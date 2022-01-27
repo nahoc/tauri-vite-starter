@@ -23,6 +23,8 @@ tauri = { version = "1.0.0-beta.8", features = ["api-all"] }
 default = [ "custom-protocol" ]
 custom-protocol = [ "tauri/custom-protocol" ]
 
+# Copy-pasted from tauri's docs to optimize bundle size
+# `opt-level = "s"` lead to smaller size than `opt-level = "z"`
 [profile.release]
 panic = "abort"
 codegen-units = 1

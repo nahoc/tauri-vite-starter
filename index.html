@@ -1,13 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vite App</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	<style>
+		.titlebar {
+			user-select: none;
+			display: flex;
+			position: fixed;
+			padding: 4px 9px;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: transparent;
+			cursor: default;
+		}
+
+		.titlebar-button {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			width: 12px;
+			border-radius: 12px;
+			height: 12px;
+			margin-right: 4px;
+			cursor: default;
+			position: relative;
+		}
+
+		#titlebar-minimize {
+			background: #f5c350;
+		}
+
+		#titlebar-maximize {
+			background: #4f4f51
+		}
+
+		#titlebar-close {
+			background: #FF5D5A;
+		}
+
+		.controls:hover #titlebar-maximize::before {
+			width: 0;
+			height: 0;
+			top: calc(50% - 3px);
+			left: calc(50% - 1px);
+			border-style: solid;
+			border-width: 0 4px 4px 0;
+			border-color: transparent;
+			content: "";
+			position: absolute;
+			transition: 0.1s;
+			border-color: transparent #2a6318 transparent transparent;
+		}
+
+		.controls:hover #titlebar-maximize::after {
+			content: "";
+			position: absolute;
+			transition: 0.1s;
+			width: 0;
+			height: 0;
+			top: calc(50% - 1px);
+			left: calc(50% - 3px);
+			border-style: solid;
+			border-width: 0 4px 4px 0;
+			border-color: transparent;
+			transform-origin: center center;
+			transform: rotateZ(180deg);
+			border-color: transparent #2a6318 transparent transparent;
+		}
+
+		.controls:hover #titlebar-minimize::before {
+			background: #8e581c;
+			width: calc(100% - 4px);
+			height: 2px;
+			top: calc(50% - 1px);
+			left: 2px;
+			content: "";
+			position: absolute;
+			transition: 0.1s;
+		}
+
+		.controls:hover #titlebar-close::before {
+			background: #450804;
+			width: calc(100% - 4px);
+			height: 1px;
+			top: 50%;
+			left: 2px;
+			transform: rotateZ(45deg);
+			content: "";
+			position: absolute;
+			transition: 0.1s;
+		}
+
+		.controls:hover #titlebar-close::after {
+			width: calc(100% - 4px);
+			height: 1px;
+			background: #450804;
+			top: 50%;
+			left: 2px;
+			transform: rotateZ(45deg);
+			transform: rotateZ(-45deg);
+			content: "";
+			position: absolute;
+			transition: 0.1s;
+		}
+	</style>
+</head>
+
+<body>
+	<div data-tauri-drag-region class="titlebar">
+		<div class="controls">
+			<div class="titlebar-button" id="titlebar-close">
+			</div>
+			<div class="titlebar-button" id="titlebar-minimize">
+			</div>
+			<div class="titlebar-button" id="titlebar-maximize">
+			</div>
+		</div>
+	</div>
+	<div id="root"></div>
+	<script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
